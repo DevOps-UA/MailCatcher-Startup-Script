@@ -28,7 +28,6 @@ MAILCATCHER_USER="[name of system user]"
 IFCONFIG_BIN="/sbin/ifconfig"
 IFCONFIG_INTERFACE="eth1"
 HTTP_IP_ADDRESS=$($IFCONFIG_BIN $IFCONFIG_INTERFACE | awk '/inet addr/ {split ($2,A,":"); print A[2]}')
-# HTTP_IP_ADDRESS="192.168.56.20"
 HTTP_PORT=1080
 
 # Set the MailCatcher stuff.
@@ -57,7 +56,6 @@ start)
     printf "%-${INDENT_SPACING}s" "Starting $MAILCATCHER_NICKNAME..."
     su "$MAILCATCHER_USER" -c "$MAILCATCHER_HOME $MAILCATCHER_PARAMETERS > /dev/null 2>&1"
     PID=$(pgrep -f $MAILCATCHER_HOME)
-    # echo "Saving PID $PID to $PID_FILENAME."
     if [ -z "$PID" ]; then
       printf "Fail\n"
     else
