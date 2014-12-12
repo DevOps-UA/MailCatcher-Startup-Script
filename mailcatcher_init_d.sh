@@ -59,6 +59,7 @@ start)
   if [ ! -f "$PID_FILENAME" ] && [ -z "$PID_CHECK" ]; then
     printf "%-${INDENT_SPACING}s" "Starting $MAILCATCHER_NICKNAME..."
     su "$MAILCATCHER_USER" -c "$MAILCATCHER_WRAPPER_HOME $MAILCATCHER_PARAMETERS > /dev/null 2>&1"
+    sleep 5
     PID=$(pgrep -f $MAILCATCHER_BINARY_HOME)
     if [ -z "$PID" ]; then
       printf "Fail\n"
