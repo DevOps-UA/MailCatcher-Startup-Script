@@ -18,6 +18,7 @@
 # Created: 2014-11-19, js
 # Version: 2014-11-19, js: creation
 #          2014-11-19, js: development
+#          2014-12-11, js: adding RVM setup support
 #
 ##########################################################################################
 
@@ -31,7 +32,10 @@ HTTP_IP_ADDRESS=$($IFCONFIG_BIN $IFCONFIG_INTERFACE | awk '/inet addr/ {split ($
 HTTP_PORT=1080
 
 # Set the MailCatcher stuff.
-MAILCATCHER_HOME='/usr/local/bin/mailcatcher'
+# MAILCATCHER_BINARY_HOME='/usr/local/bin/mailcatcher'
+# MAILCATCHER_WRAPPER_HOME=$MAILCATCHER_BINARY_HOME
+MAILCATCHER_BINARY_HOME='/home/[username]/.rvm/gems/ruby-2.1.5/bin/mailcatcher'
+MAILCATCHER_WRAPPER_HOME='/home/[username]/.rvm/gems/ruby-2.1.5/wrappers/mailcatcher'
 MAILCATCHER_PARAMETERS="--http-ip=$HTTP_IP_ADDRESS --http-port=$HTTP_PORT"
 MAILCATCHER_NICKNAME="mailcatcher"
 
@@ -49,13 +53,13 @@ start)
     PID=`cat $PID_FILENAME`
     PID_CHECK=`ps axf | grep ${PID} | grep -v grep`
   else
-    PID_CHECK=$(pgrep -f $MAILCATCHER_HOME)
+    PID_CHECK=$(pgrep -f $MAILCATCHER_BINARY_HOME)
   fi
 
   if [ ! -f "$PID_FILENAME" ] && [ -z "$PID_CHECK" ]; then
     printf "%-${INDENT_SPACING}s" "Starting $MAILCATCHER_NICKNAME..."
-    su "$MAILCATCHER_USER" -c "$MAILCATCHER_HOME $MAILCATCHER_PARAMETERS > /dev/null 2>&1"
-    PID=$(pgrep -f $MAILCATCHER_HOME)
+    su "$MAILCATCHER_USER" -c "$MAILCATCHER_WRAPPER_HOME $MAILCATCHER_PARAMETERS > /dev/null 2>&1"
+    PID=$(pgrep -f $MAILCATCHER_BINARY_HOME)
     if [ -z "$PID" ]; then
       printf "Fail\n"
     else

@@ -16,7 +16,8 @@ Place the contents of the `mailcatcher_init_d.sh` in this repo into that file. B
 - **HTTP_IP_ADDRESS:** The IP address `mailcatcher` should bind with for the web interface.
 - **HTTP_PORT:** The port `mailcatcher` should bind with for the web interface.
 - **MAILCATCHER_USER:** The name of the Linux/Unix system user that will be running `mailcatcher` on the system. Rememeber, `mailcatcher` does not need to be run by the `root` user and the `root` user can use `su` to run a script as another user.
-- **MAILCATCHER_HOME:** The installation home for the actual `mailcatcher` Ruby applictaion install.
+- **MAILCATCHER_BINARY_HOME:** The installation home for the actual `mailcatcher` Ruby binary applictaion install.
+- **MAILCATCHER_WRAPPER_HOME:** The RVM wrappers installation home for the actual `mailcatcher` Ruby binary applictaion install.
 
 #### Set proper permsissions
 
