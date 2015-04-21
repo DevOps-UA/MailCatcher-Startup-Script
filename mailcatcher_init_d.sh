@@ -11,9 +11,13 @@
 
 ##########################################################################################
 #
-# MailCatcher Init Script (mailcatcher_init_d.sh)
+# MailCatcher Init Script (mailcatcher_init_d.sh) (c) by Jack Szwergold
 #
-# Programming: Jack Szwergold
+# MailCatcher Init Script is licensed under a
+# Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.
+#
+# You should have received a copy of the license along with this
+# work. If not, see <http://creativecommons.org/licenses/by-nc-sa/4.0/>. 
 #
 # Created: 2014-11-19, js
 # Version: 2014-11-19, js: creation
